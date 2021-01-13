@@ -1,16 +1,21 @@
-package com.example.demo;
+package com.example.demo.model;
 
 import org.springframework.stereotype.Component;
 
 @Component("laptop")
 public class Laptop {
-    private int lid;
+    private long lid;
     private String brand;
 
     public Laptop() {
     }
 
-    public int getLid() {
+    public Laptop(final long incrementAndGet, String format) {
+        this.lid = incrementAndGet;
+        this.brand = format;
+    }
+
+    public long getLid() {
         return lid;
     }
 
