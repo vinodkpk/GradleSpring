@@ -23,7 +23,18 @@ public class UserController{
     private String register(@RequestBody User user){
         userRespository.save(user);
         return "Hi"+ user.getFirstName()+"Congrats for registering";
+//Jason body
+//        {
+//            "firstName":"JimBean",
+//                "lastname":"jue",
+//                "email":"vintage@g.com"
+ //       }
+    }
 
+    @DeleteMapping("cancel/{id}")
+    public List<User> cancelRegistration(@PathVariable Long id){
+        userRespository.deleteById(id);
+        return userRespository.findAll();
     }
 
 }
