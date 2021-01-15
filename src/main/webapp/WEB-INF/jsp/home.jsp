@@ -4,6 +4,7 @@
 <html lang="en">
     <head></head>
     <body>
+    ${message}
         Hello User....
     </body>
 </html>
