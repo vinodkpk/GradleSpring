@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -40,12 +41,19 @@ public class UserController{
     }
 
 }
+
 @Controller
 class HomerController {
-    @RequestMapping("/homer")
-    public String home(Model model){
+    @RequestMapping("/home")
+    public String home(Model model, HttpServletRequest req){
         model.addAttribute("home", "Welcome to Spring Boot");
+
+        String name=req.getParameter("name");
+        System.out.println("Hi"+name);
+        model.addAttribute("name", name);
+
         return "home";
+
 
     }
 
