@@ -9,6 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-    Welcome ${home} ${name}
+    Welcome  ${name}
 </body>
 </html>

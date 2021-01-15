@@ -4,10 +4,9 @@ import com.example.demo.dao.UserRespository;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -42,7 +41,7 @@ public class UserController{
 
 }
 
-@Controller
+/*@Controller
 class HomerController {
     @RequestMapping("/home")
     public String home(Model model, HttpServletRequest req){
@@ -57,4 +56,18 @@ class HomerController {
 
     }
 
+}*/
+
+@Controller
+class HomerController {
+    @RequestMapping("/home")
+    public ModelAndView home(@RequestParam("name") String myName) {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("name", myName);
+        mv.setViewName("home");
+
+        return mv;
+
+
+    }
 }
