@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.dao.UserRespository;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,6 +37,16 @@ public class UserController{
     public List<User> cancelRegistration(@PathVariable Long id){
         userRespository.deleteById(id);
         return userRespository.findAll();
+    }
+
+}
+@Controller
+class HomerController {
+    @RequestMapping("/homer")
+    public String home(Model model){
+        model.addAttribute("home", "Welcome to Spring Boot");
+        return "home";
+
     }
 
 }
