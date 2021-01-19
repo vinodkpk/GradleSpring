@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api")
@@ -78,5 +79,18 @@ class AlienController {
      //   ModelAndView mv = new ModelAndView();
      //   mv.setViewName("alien");
       //  return mv;
+    }
+
+
+    @Autowired
+    private AlienRepo alienRepo;
+    @RequestMapping("/getAlien")
+    public ModelAndView getALien(@RequestParam Long aid){
+        ModelAndView mv = new ModelAndView("showAlien");
+        Optional<Alien> alienbyId=alienRepo.findById(aid);
+        System.out.println(alienbyId.get().getName());
+        mv.addObject("alienbyId",alienRepo.findById(aid));
+       return mv;
+
     }
 }
