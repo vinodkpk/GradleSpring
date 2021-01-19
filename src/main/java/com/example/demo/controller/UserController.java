@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.dao.AlienRepo;
 import com.example.demo.dao.UserRespository;
+import com.example.demo.model.Alien;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,22 +43,6 @@ public class UserController{
 
 }
 
-/*@Controller
-class HomerController {
-    @RequestMapping("/home")
-    public String home(Model model, HttpServletRequest req){
-        model.addAttribute("home", "Welcome to Spring Boot");
-
-        String name=req.getParameter("name");
-        System.out.println("Hi"+name);
-        model.addAttribute("name", name);
-
-        return "home";
-
-
-    }
-
-}*/
 
 @Controller
 class HomerController {
@@ -69,5 +55,28 @@ class HomerController {
         return mv;
 
 
+    }
+}
+
+@Controller
+class AlienController {
+    @Autowired
+    AlienRepo repo;
+    @RequestMapping("/alien")
+    public ModelAndView alien(@RequestParam("name") String myName) {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("name", myName);
+        mv.setViewName("alien");
+
+        return mv;
+    }
+
+    @RequestMapping("/addAlien")
+    public String addAlien(Alien alien) {
+        repo.save(alien);
+        return "alien";
+     //   ModelAndView mv = new ModelAndView();
+     //   mv.setViewName("alien");
+      //  return mv;
     }
 }

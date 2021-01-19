@@ -9,6 +9,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-    Home  ${name}
+    Alien  ${obj.aid} , ${obj.name}, ${obj.lang}
+
+    <form action="addAlien">
+    <input type="text" name="name"><br>
+    <input type="text" name="lang"><br>
+    <input type="submit"><br>
+    </form>
 </body>
 </html>
+
