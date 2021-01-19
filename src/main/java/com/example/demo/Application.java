@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.dao.UserRespository;
-import com.example.demo.model.User;
+import com.example.demo.dao.AlienRepo;
+import com.example.demo.model.Alien;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,12 +16,12 @@ public class Application implements CommandLineRunner {
 		SpringApplication.run(Application.class, args);
 	}
 @Autowired 
-private UserRespository userRespository;
+private AlienRepo alienRepo;
 	@Override
 	public void run(String... args) throws Exception {
-		this.userRespository.save(new User("Famesh","Fad","Fin@gmail.com"));
-		this.userRespository.save(new User("Vamesh","Vad","Vin@gmail.com"));
-		this.userRespository.save(new User("Pamesh","Pad","Pin@gmail.com"));
+		Alien save1 = this.alienRepo.save(new Alien("Vicky", "Ruby"));
+		Alien save2 = this.alienRepo.save(new Alien("Kaushal", "R"));
+		Alien save3 = this.alienRepo.save(new Alien("Mat", "R"));
 	}
 }
 

@@ -17,10 +17,15 @@
     <input type="submit"><br>
     </form>
 
-    <form action="getAlien">
+    <form action="/getAlien">
         <input type="text" name="aid"><br>
         <input type="submit"><br>
      </form>
+
+     <form action="/getALienbyLang">
+             <input type="text" name="lang"><br>
+             <input type="submit"><br>
+          </form>
 
 </body>
 </html>

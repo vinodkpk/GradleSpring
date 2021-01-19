@@ -35,6 +35,14 @@ public class Alien {
     public void setLang(String lang) {
         this.lang = lang;
     }
+    public Alien() {
+
+    }
+
+    public Alien(String name, String lang) {
+        this.name = name;
+        this.lang = lang;
+    }
 
     @Override
     public String toString() {

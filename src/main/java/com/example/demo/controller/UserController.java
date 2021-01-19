@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.AlienRepo;
-import com.example.demo.dao.UserRespository;
 import com.example.demo.model.Alien;
-import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,52 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("api")
-public class UserController{
-
-    @Autowired
-    private UserRespository userRespository;
-    @GetMapping("getAllusers")
-    public List<User> getusers(){
-        return this.userRespository.findAll();
-
-    }
-
-    @PostMapping("register")
-    private String register(@RequestBody User user){
-        userRespository.save(user);
-        return "Hi"+ user.getFirstName()+"Congrats for registering";
-//Jason body
-//        {
-//            "firstName":"JimBean",
-//                "lastname":"jue",
-//                "email":"vintage@g.com"
- //       }
-    }
-
-    @DeleteMapping("cancel/{id}")
-    public List<User> cancelRegistration(@PathVariable Long id){
-        userRespository.deleteById(id);
-        return userRespository.findAll();
-    }
-
-}
 
 
-@Controller
-class HomerController {
-    @RequestMapping("/home")
-    public ModelAndView home(@RequestParam("name") String myName) {
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("name", myName);
-        mv.setViewName("home");
-
-        return mv;
-
-
-    }
-}
 
 @Controller
 class AlienController {
@@ -91,6 +45,15 @@ class AlienController {
         System.out.println(alienbyId.get().getName());
         mv.addObject("alienbyId",alienRepo.findById(aid));
        return mv;
+
+    }
+
+    @RequestMapping("/getALienbyLang")
+    public ModelAndView getALienbyLang(@RequestParam String lang){
+        ModelAndView mv = new ModelAndView("showAlien");
+       List<Alien> alienbyLang=alienRepo.findByLang(lang);
+        mv.addObject("alienbylang",alienbyLang);
+        return mv;
 
     }
 }
