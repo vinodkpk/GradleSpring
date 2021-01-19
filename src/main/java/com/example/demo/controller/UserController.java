@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.dao.AlienRepo;
 import com.example.demo.model.Alien;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,21 +20,32 @@ class AlienController {
     @Autowired
     AlienRepo repo;
     @RequestMapping("/alien")
-    public ModelAndView alien(@RequestParam("name") String myName) {
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("name", myName);
-        mv.setViewName("alien");
+    @ResponseBody  //If we are returning data and not a spring model view.List<Alien> nstead of String to use JPA repository and get Jason format
+    public List<Alien> alien() {
 
-        return mv;
+        return repo.findAll();
     }
 
-    @RequestMapping("/addAlien")
+
+    @RequestMapping("/alien/{aid}")
+    @ResponseBody  //If we are returning data and not a spring model view. Optional<Alien> nstead of String to use JPA repository and get Jason format
+    public Optional<Alien> getAlien(@PathVariable("aid") Long aid) {
+        Optional<Alien> alienbyId=repo.findById(aid);
+        return alienbyId;
+    }
+    @RequestMapping("/addAlien")//if we want to add from aien.jsp
     public String addAlien(Alien alien) {
         repo.save(alien);
         return "alien";
-     //   ModelAndView mv = new ModelAndView();
-     //   mv.setViewName("alien");
-      //  return mv;
+
+    }
+
+    @RequestMapping(value="/addAlienPost",method=RequestMethod.POST)
+    public ResponseEntity<String> addAlienPost(@RequestBody Alien  alien) {
+
+        repo.save(alien);
+        return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
+
     }
 
 

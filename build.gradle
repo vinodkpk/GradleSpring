@@ -30,6 +30,7 @@ dependencies {
 	compile group: 'org.webjars', name: 'bootstrap', version: '4.5.3'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.11.3'
 }
 
 dependencyManagement {
