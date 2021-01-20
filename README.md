@@ -3,7 +3,7 @@
  ./gradlew bootRun
 
 
-#GitCommands
+
 
 #Docker Commands
 docker build -f Dockerfile -t my-sprint-boot .
