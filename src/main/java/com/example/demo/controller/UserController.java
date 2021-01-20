@@ -48,6 +48,15 @@ class AlienController {
 
     }
 
+    @DeleteMapping("/DeleteAlien/{aid}")
+    public void deleteAlien(@PathVariable long aid) {
+        Alien a= repo.getOne(aid);
+        repo.delete(a);
+
+    }
+
+
+
 
     @Autowired
     private AlienRepo alienRepo;
