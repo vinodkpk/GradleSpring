@@ -56,4 +56,18 @@ VInodkpk
 test
 http://127.0.0.1:8080
 
+#GCP
+gcloud config list account
+gcloud config list project
+gcloud config set compute/zone us-east1-b
+gcloud config list
+cd ~/
+git clone https://github.com/vinodkpk/GradleSpring.git
+cd ~/
+https://github.com/vinodkpk/eureka.git
+
+./gradlew bootRun
+
+
+
 
